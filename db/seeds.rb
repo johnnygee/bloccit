@@ -21,6 +21,14 @@ require 'random_data'
    )
  end
 
+ puts "#{Post.count}"
+ Post.find_or_create_by(title: "The most unique post", body: "This is unbelievably unique")
+ puts "#{Post.count}"
+
+ puts "#{Comment.count}"
+ Comment.find_or_create_by(body: "The most unique body of a post", post_id: 203)
+ puts "#{Comment.count}"
+
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
