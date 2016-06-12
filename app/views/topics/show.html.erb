@@ -11,6 +11,15 @@
        <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
        <br />
        <%= @topic.description %>
+       <div>
+       <h3>Comments</h3>
+       <%= render @topic.comments %>
+     </div>
+     <% if current_user %>
+  <!-- #20 -->
+        <%= render 'comments/form', comment: Comment.new, topic: @topic %>
+      <% end %>
+     </div>
      </p>
  <!-- #10 -->
      <% @topic.posts.each do |post| %>
