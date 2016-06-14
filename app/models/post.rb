@@ -14,19 +14,16 @@ class Post < ActiveRecord::Base
   validates :user, presence: true
 
   def up_votes
- # #9
      votes.where(value: 1).count
-   end
+  end
 
-   def down_votes
- # #10
+  def down_votes
      votes.where(value: -1).count
-   end
+  end
 
-   def points
- # #11
+  def points
      votes.sum(:value)
-   end
+  end
 
    def update_rank
      age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
