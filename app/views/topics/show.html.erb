@@ -13,7 +13,7 @@
        <%= @topic.description %>
        <div>
        <h3>Comments</h3>
-       <%= render @topic.comments %>
+       <%= render partial: 'comments/comment', collection: @topic.comments, as: :comment, locals: { something_to_comment_on: @topic } %>
      </div>
      <% if current_user %>
   <!-- #20 -->
