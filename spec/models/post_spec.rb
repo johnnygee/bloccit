@@ -3,15 +3,17 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
 # #4
+  let(:title) { 'My Title' }
+  let(:body) { 'Some long body goes here.' }
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
 # #2
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
-
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
 
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
+  it { is_expected.to have_many(:favorites)}
 
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
