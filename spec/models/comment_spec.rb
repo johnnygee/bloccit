@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:topic) { create(:topic) }
-  let(:user) { create(:user) }
-  let(:post) { create(:post) }
-  let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+  # let(:topic) { create(:topic) }
+  let(:user) { comment.user }
+  let(:post) { comment.post }
+  let(:comment) { create(:comment) }
 
  # #2
      it { is_expected.to belong_to(:post) }
@@ -23,7 +23,7 @@ RSpec.describe Comment, type: :model do
    describe "after_create" do
  # #22
      before do
-       @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
+       @another_comment = build(:comment)
      end
 
  # #23
