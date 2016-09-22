@@ -21,6 +21,23 @@ RSpec.describe User, type: :model do
  it { is_expected.to have_secure_password }
  it { is_expected.to validate_length_of(:password).is_at_least(6) }
 
+ describe '#has_posts_or_comments?' do
+   let(:user) { FactoryGirl.create(:user) }
+
+   it 'returns true if user has posts' do
+     FactoryGirl.create(:post, user: user)
+     expect(user.has_posts_or_comments?).to eq(true)
+   end
+
+   it 'returns true if user has comments' do
+     FactoryGirl.create(:comment, user: user)
+     expect(user.has_posts_or_comments?).to eq(true)
+   end
+
+   it 'returns false if user has no comments or posts' do
+     expect(user.has_posts_or_comments?).to eq(false)
+   end
+ end
  describe "attributes" do
    it "should respond to name" do
      expect(user).to respond_to(:name)
